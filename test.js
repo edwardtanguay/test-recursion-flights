@@ -26,7 +26,7 @@ const flightCollections = [
 			airport: "hamburg"
 		},
 		{
-			airport: "london"
+			airport: "bordeux"
 		},
 		{
 			airport: "paris"
@@ -51,10 +51,15 @@ const compareFlights = (currentIndex, currentAirport = null) => {
 	const flights1 = flightCollections[currentIndex];
 	const flights2 = flightCollections[currentIndex + 1];
 	const atEnd = flightCollections.length - currentIndex === 2;
+
+	const airportsAreTheSame = (currentAirport, flight1, flight2) => {
+		return (currentAirport === null || flight1.airport === currentAirport) && flight1.airport === flight2.airport;
+	};
+
 	if (!atEnd) {
 		flights1.forEach((flight1) => {
 			flights2.forEach(flight2 => {
-				if ((currentAirport === null || flight1.airport === currentAirport) && flight1.airport === flight2.airport) {
+				if (airportsAreTheSame(currentAirport, flight1, flight2)) {
 					compareFlights(currentIndex + 1, flight1.airport);
 				}
 			});
@@ -62,7 +67,7 @@ const compareFlights = (currentIndex, currentAirport = null) => {
 	} else {
 		flights1.forEach((flight1) => {
 			flights2.forEach(flight2 => {
-				if ((currentAirport === null || flight1.airport === currentAirport) && flight1.airport === flight2.airport) {
+				if (airportsAreTheSame(currentAirport, flight1, flight2)) {
 					commonDestinations.push({ airport: flight1.airport });
 				}
 			});
