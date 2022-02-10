@@ -38,8 +38,9 @@ const commonDestinations = [];
 
 const compareFlights = (currentIndex) => {
 	const flights1 = flightCollections[currentIndex];
-	const flights2 = currentIndex === flightCollections.length - 1 ? null : flightCollections[currentIndex + 1];
-	if (flights2 !== null) {
+	const flights2 = flightCollections[currentIndex + 1];
+	const atEnd = flightCollections.length - currentIndex === 2;
+	if (!atEnd) {
 		flights1.forEach((flight1) => {
 			flights2.forEach(flight2 => {
 				if (flight1.airport === flight2.airport) {
@@ -48,10 +49,12 @@ const compareFlights = (currentIndex) => {
 			});
 		});
 	} else {
-		flights2.forEach(flight2 => {
-			if (flight1.airport === flight2.airport) {
-				commonDestinations.push(flight.airport);
-			}
+		flights1.forEach((flight1) => {
+			flights2.forEach(flight2 => {
+				if (flight1.airport === flight2.airport) {
+					commonDestinations.push({ airport: flight1.airport });
+				}
+			});
 		});
 	}
 }
