@@ -7,7 +7,7 @@ const flightCollections = [
 			airport: "london"
 		},
 		{
-			airport: "düsseldorf"
+			airport: "hamburg"
 		}
 	],
 	[
@@ -30,6 +30,17 @@ const flightCollections = [
 		},
 		{
 			airport: "paris"
+		}
+	],
+	[
+		{
+			airport: "hamburg"
+		},
+		{
+			airport: "london"
+		},
+		{
+			airport: "munich"
 		}
 	]
 ];
